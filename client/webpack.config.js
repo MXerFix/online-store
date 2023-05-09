@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "index.js",
-    assetModuleFilename: 'images/[name][hash][ext][query]'
+    assetModuleFilename: "assets/[name][hash][ext][query]",
   },
 
   module: {
@@ -47,8 +47,12 @@ module.exports = {
       },
       {
         test: /\.(jpg|svg|png)$/,
-        type: 'asset/resource'
-      }
+        type: "asset/resource",
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        type: "asset/resource",
+      },
     ],
   },
 

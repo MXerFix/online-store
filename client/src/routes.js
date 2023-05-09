@@ -48,5 +48,17 @@ export const publicRoutes = [
   {
     path: LOGIN_ROUTE,
     Component: <Auth />
-  },
+  }
+  // {
+  //   path: ADMIN_ROUTE,
+  //   Component: <Auth />
+  // },
+  // {
+  //   path: OFFER_ROUTE,
+  //   Component: <Auth />
+  // },
+  // {
+  //   path: PROFILE_ROUTE,
+  //   Component: <Auth />
+  // },
 ]

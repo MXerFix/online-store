@@ -1,0 +1,123 @@
+._card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  scroll-snap-align: start;
+}
+
+
+
+
+.card__mainInfo_img {
+  width: 100%;
+  position: relative;
+}
+
+.card__mainInfo_img img {
+  width: 100%;
+  border-radius: 24px;
+}
+
+.card__mainInfo_img button {
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  scale: 0.8;
+  cursor: pointer;
+}
+
+.heart_svg_1 {
+  transition: all .3s;
+}
+
+.heart_svg_2 {
+  scale: 0;
+  transform-origin: 50% 50%;
+  fill: rgb(255, 74, 74);
+  stroke-opacity: 0;
+  transition: all .3s;
+}
+
+.heart_svg_2_active {
+  scale: 1;
+  fill: rgb(255, 74, 74);
+}
+
+
+.card__mainInfo_img button:hover .heart_svg_2 {
+  scale: 1;
+}
+
+.card__mainInfo_img button:hover .heart_svg_1 {
+  stroke: rgb(255, 74, 74) ;
+}
+
+
+.card__mainInfo_text {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.card__text_name {
+  font-family: 'Marmelad', sans-serif;
+  font-weight: 300;
+  font-size: 32px;
+  margin: 0;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.card__text_description {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  margin: 0;
+}
+
+.card__priceInfo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.card__priceBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  position: relative;
+}
+
+._price {
+  color: #fff;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 28px;
+  font-weight: 300;
+}
+
+._oldPrice {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  position: absolute;
+  top: 12px;
+  right: -10px;
+  color: #636363;
+  text-decoration: line-through;
+}
+
+.card__priceBox_cartBtn {
+  scale: 0.8;
+  transform-origin: right bottom;
+}
+
+.card_invertBtn {
+  background-color: #000;
+}

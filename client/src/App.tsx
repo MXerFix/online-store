@@ -5,10 +5,10 @@ import { authRoutes, publicRoutes } from './routes'
 import { Favorites } from './pages/Favorites/Favorites'
 import { Basket } from './pages/Basket/Basket'
 import AppRouter from './components/AppRouter'
+import './main.global.css'
 
 export default function App() {
-
-  const IS_AUTH = false
+  
 
   return (
     <BrowserRouter>
