@@ -110,3 +110,18 @@ input {
   font-size: 48px;
 }
 
+.br-32 {
+  border-radius: 32px;
+}
+
+.let-spacing-01 {
+  letter-spacing: 0.1em;
+}
+
+.bg-color_white {
+  background-color: #fff;
+}
+
+.mt-32 {
+  margin-top: 32px;
+}

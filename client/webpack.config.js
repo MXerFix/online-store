@@ -17,6 +17,7 @@ module.exports = {
     path: path.resolve(__dirname, "build"),
     filename: "index.js",
     assetModuleFilename: "assets/[name][hash][ext][query]",
+    publicPath: '/'
   },
 
   module: {

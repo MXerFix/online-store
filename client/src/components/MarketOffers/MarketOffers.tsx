@@ -37,8 +37,6 @@ export function MarketOffers() {
       )
     }
   })
-  
-
 
   const TOP_LIST = productsList.map(({ id, name, description, price, oldPrice, img }) => {
     if (category === TOP) {
@@ -49,12 +47,6 @@ export function MarketOffers() {
       )
     }
   })
-
-
-  
-
-
-
 
   const scrollBarIs = () => {
     if ((category === SALES && SALES_LIST.length <= 3) || (category === TOP && TOP_LIST.length <= 3) || (category === NEW && NEW_LIST.length <= 3)) {

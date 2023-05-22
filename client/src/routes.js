@@ -22,6 +22,30 @@ export const authRoutes = [
     path: PROFILE_ROUTE,
     Component: <Profile />
   },
+  {
+    path: BASKET_ROUTE,
+    Component: <Basket />
+  },
+  {
+    path: SHOP_ROUTE,
+    Component: <Shop />
+  },
+  {
+    path: FAVORITES_ROUTE,
+    Component: <Favorites />
+  },
+  {
+    path: DEVICE_PAGE_ROUTE + '/:id',
+    Component: <DevicePage />
+  },
+  {
+    path: REGISTRATION_ROUTE,
+    Component: <Auth />
+  },
+  {
+    path: LOGIN_ROUTE,
+    Component: <Auth />
+  }
 ]
 
 export const publicRoutes = [
@@ -49,16 +73,4 @@ export const publicRoutes = [
     path: LOGIN_ROUTE,
     Component: <Auth />
   }
-  // {
-  //   path: ADMIN_ROUTE,
-  //   Component: <Auth />
-  // },
-  // {
-  //   path: OFFER_ROUTE,
-  //   Component: <Auth />
-  // },
-  // {
-  //   path: PROFILE_ROUTE,
-  //   Component: <Auth />
-  // },
 ]

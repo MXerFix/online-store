@@ -3,9 +3,13 @@
   flex-direction: column;
   width: 100%;
   scroll-snap-align: start;
+  cursor: pointer;
+  transition: all .3s;
 }
 
-
+._card:hover {
+  scale: 1.01;
+}
 
 
 .card__mainInfo_img {
@@ -47,11 +51,11 @@
 }
 
 
-.card__mainInfo_img button:hover .heart_svg_2 {
+.card__mainInfo_img button:active .heart_svg_2 {
   scale: 1;
 }
 
-.card__mainInfo_img button:hover .heart_svg_1 {
+.card__mainInfo_img button:active .heart_svg_1 {
   stroke: rgb(255, 74, 74) ;
 }
 

@@ -20,6 +20,7 @@ const BasketProdCard = ({ id, name, description, img, price, oldPrice }: BasketP
 
   const [favorite, setFavorite] = useState(false)
   const [basket, setBasket] = useState(false)
+  
 
   useEffect(() => {
     if (FavoritesStore.FAVORITES_LIST.filter((item: number) => { return item === id }).length) setFavorite(true)

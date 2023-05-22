@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React from 'react'
 import styles from './invertbtn.css'
 
@@ -6,9 +7,9 @@ interface InvertBtnI {
   [propKey: string] :any
 }
 
-const InvertBtn = ({children, ...props}: InvertBtnI) => {
+const InvertBtn = ({children, className, ...props}: InvertBtnI) => {
   return (
-    <button {...props} className={styles.invert_btn} >
+    <button {...props} className={classNames(styles.invert_btn, className)} >
       <p> {children} </p>
     </button>
   )
