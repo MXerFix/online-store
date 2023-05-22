@@ -11,16 +11,6 @@ const AppRouter = observer(() => {
 
   const IS_AUTH = UserStore._isAuth
 
-  let navigation = useNavigation()
-
-
-
-  // let { pathname } = useLocation()
-
-  useEffect(() => {
-    window.scrollTo({top: 0, left: 0, behavior: 'auto'})
-  }, [navigation.location])
-
   const routes = (IS_AUTH ? authRoutes.map(({ path, Component }) => <Route key={path} path={path} element={Component} />) : publicRoutes.map(({ path, Component }) => <Route key={path} path={path} element={Component} />))
 
   const router = createBrowserRouter(
