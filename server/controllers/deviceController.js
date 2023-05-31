@@ -1,26 +1,41 @@
 const uuid = require('uuid')
 const path = require('path')
-const { Device, DeviceInfo } = require("../models/models")
+const { Device, DeviceInfo, DeviceColor, PagedDevice } = require("../models/models")
 const ApiError = require('../error/ApiError')
+const e = require('express')
 
 class DeviceController {
   async create(req, res, next) {
     try {
-      const { name, price, brandId, typeId, info } = req.body
+      const { name, description, price, oldPrice, brandName, brandId, categoryName, categoryId, info, color, bigDescription } = req.body
       const { img } = req.files
       let fileName = uuid.v4() + ".png"
       img.mv(path.resolve(__dirname, '../static', fileName))
-      const device = await Device.create({ name, price, brandId, typeId, img: fileName })
+      const device = await Device.create({ name, description, price, oldPrice, img: fileName, brandName, brandId, categoryName, categoryId })
+      if (bigDescription) PagedDevice.create({
+        bigDescription: bigDescription,
+        deviceId: device.id
+      })
 
       if (info) {
-        info = JSON.parse(info)
-        info.forEach(el => {
+        const infoJSON = JSON.parse(info)
+        infoJSON.forEach(el => {
           DeviceInfo.create({
             title: el.title,
             description: el.description,
             deviceId: device.id
           })
         });
+      }
+
+      if (color) {
+        const colorJSON = JSON.parse(color)
+        colorJSON.forEach(el => {
+          DeviceColor.create({
+            color: el,
+            deviceId: device.id
+          })
+        })
       }
 
       return res.json(device)
@@ -52,7 +67,7 @@ class DeviceController {
     const { id } = req.params
     const device = await Device.findOne({
       where: {id},
-      include: [{model:DeviceInfo, as: 'info'}]
+      include: [{model:DeviceInfo, as: 'info'}, {model: DeviceColor, as: 'colors'}, {model: PagedDevice, as: 'pagedDevice'}]
     })
     return res.json(device)
   }

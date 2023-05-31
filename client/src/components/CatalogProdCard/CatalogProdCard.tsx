@@ -23,13 +23,13 @@ const CatalogProdCard = observer(({ id, name, description, price, oldPrice, img 
   const [basket, setBasket] = useState(false)
 
 
-  useEffect(() => {
-    if (FavoritesStore.favoritesList.filter((item: number) => { return item === id }).length) { setFavorite(true) }
-  }, [])
+  // useEffect(() => {
+  //   if (FavoritesStore.favoritesList.filter((item: number) => { return item === id }).length) { setFavorite(true) }
+  // }, [])
 
-  useEffect(() => {
-    if (BasketStore.basketList.filter((item: number) => { return item === id }).length) setBasket(true)
-  }, [])
+  // useEffect(() => {
+  //   if (BasketStore.basketList.filter((item: number) => { return item === id }).length) setBasket(true)
+  // }, [])
 
   useEffect(() => {
     if (FavoritesStore.FAVORITES_LIST.includes(id)) setFavorite(true)

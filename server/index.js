@@ -20,10 +20,6 @@ app.use('/api', router)
 //errors
 app.use(errorHandler)
 
-
-
-
-
 const start = async () => {
   try {
     await sequelize.authenticate()

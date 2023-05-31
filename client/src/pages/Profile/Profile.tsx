@@ -5,6 +5,7 @@ import { OffersHistory } from './components/OffersHistory/OffersHistory';
 import { ProfileBlock } from './components/ProfileBlock';
 import styles from './profile.css';
 import UserStore from '../../store/UserStore';
+import { ScrollRestoration } from 'react-router-dom';
 
 
 export function Profile() {
@@ -16,8 +17,9 @@ export function Profile() {
       <div className='content'>
         <ProfileBlock User={UserStore.user} />
         <OffersHistory />
-        <Contacts name={UserStore.user.name} email={UserStore.user.email} />
+        <Contacts />
       </div>
+      <ScrollRestoration />
     </div>
   );
 }

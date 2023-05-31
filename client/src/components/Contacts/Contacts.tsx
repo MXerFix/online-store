@@ -5,8 +5,6 @@ import { Socials } from './components/Socials/Socials';
 import styles from './contacts.css';
 
 interface contactsInterface {
-  name?: string,
-  email?: string,
   [propKey:string]:any,
 }
 
@@ -15,7 +13,7 @@ interface contactsInterface {
 export function Contacts({ ...props } : contactsInterface) {
   return (
     <div {...props} className={styles.contacts__wrapper}>
-      <Form name={UserStore.user.name} email={UserStore.user.email} />
+      <Form />
       <Socials />
     </div>
   );

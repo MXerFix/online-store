@@ -1,11 +1,14 @@
 import { observer } from 'mobx-react-lite'
 import path from 'path'
-import React, { useEffect } from 'react'
-import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider, Routes, useLocation, useMatches, useNavigate, useNavigation } from 'react-router-dom'
+import React, { createRef, useEffect } from 'react'
+import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider, Routes, ScrollRestoration, useLocation, useMatches, useNavigate, useNavigation } from 'react-router-dom'
 import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage'
 import { authRoutes, publicRoutes } from '../routes'
 import UserStore from '../store/UserStore'
 import { ADMIN_ROUTE, DEVICE_PAGE_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../utils/consts'
+import Preloader from './Preloader/Preloader'
+
+
 
 const AppRouter = observer(() => {
 
@@ -21,16 +24,9 @@ const AppRouter = observer(() => {
     )
   )
 
-  // const navigate = useNavigate()
-
-  const isAuthPath = (path: string) => {
-    if (path === PROFILE_ROUTE || path === ADMIN_ROUTE) {
-      return path = LOGIN_ROUTE
-    }
-  }
 
   return (
-    <RouterProvider router={router} />
+    <RouterProvider router={router} fallbackElement={<Preloader />} />
   )
 })
 

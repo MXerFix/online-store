@@ -3,7 +3,9 @@ const { DataTypes } = require('sequelize')
 
 const User = sequelize.define('user', {
   id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+  name: {type: DataTypes.STRING, defaultValue: 'Unknown'},
   email: {type: DataTypes.STRING, unique:true},
+  tel: {type: DataTypes.STRING, unique:true, defaultValue: ''},
   password: {type: DataTypes.STRING},
   role: {type: DataTypes.STRING, defaultValue:"USER"},
 })
@@ -19,9 +21,32 @@ const BasketDevice = sequelize.define('basket_device', {
 const Device = sequelize.define('device', {
   id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
   name: {type: DataTypes.STRING, unique:true, allowNull:false},
+  description: {type: DataTypes.STRING, allowNull:false},
   price: {type:DataTypes.INTEGER, allowNull:false},
+  oldPrice: {type:DataTypes.INTEGER},
   rating: {type: DataTypes.INTEGER, defaultValue:0},
   img: {type: DataTypes.STRING, allowNull:false},
+  brandName: { type: DataTypes.STRING, allowNull: false },
+  brandId: {type: DataTypes.INTEGER},
+  categoryName: { type: DataTypes.STRING, allowNull: false },
+  categoryId: {type: DataTypes.INTEGER},
+})
+
+const PagedDevice = sequelize.define('paged_device', {
+  bigDescription: {type: DataTypes.STRING, allowNull:false},
+  deviceId: {type: DataTypes.INTEGER, allowNull: false}
+})
+
+const DeviceColor = sequelize.define('device_color', {
+  color: {type: DataTypes.STRING, allowNull:false},
+  deviceId: {type: DataTypes.INTEGER, allowNull: false}
+})
+
+const DeviceInfo = sequelize.define('device_info', {
+  id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+  title: {type: DataTypes.STRING, allowNull:false},
+  description: {type: DataTypes.STRING, allowNull:false},
+  deviceId: {type: DataTypes.INTEGER, allowNull: false}
 })
 
 const Type = sequelize.define('type', {
@@ -37,12 +62,6 @@ const Brand = sequelize.define('brand', {
 const Rating = sequelize.define('rating', {
   id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
   rate: {type: DataTypes.INTEGER, allowNull:false}
-})
-
-const DeviceInfo = sequelize.define('device_info', {
-  id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
-  title: {type: DataTypes.STRING, allowNull:false},
-  description: {type: DataTypes.STRING, allowNull:false}
 })
 
 const TypeBrand = sequelize.define('type_brand', {
@@ -70,6 +89,13 @@ Rating.belongsTo(Device)
 Device.hasMany(BasketDevice)
 BasketDevice.belongsTo(Device)
 
+Device.hasOne(PagedDevice, {as: 'pagedDevice'})
+PagedDevice.belongsTo(Device)
+
+Device.hasMany(DeviceColor, {as: 'colors'})
+DeviceColor.belongsTo(Device)
+
+
 Device.hasMany(DeviceInfo, {as: 'info'})
 DeviceInfo.belongsTo(Device)
 
@@ -78,5 +104,5 @@ Brand.belongsToMany(Type, {through: TypeBrand })
 
 
 module.exports = {
-  User, Basket, BasketDevice, Device, Type, Brand, Rating, TypeBrand, DeviceInfo
+  User, Basket, BasketDevice, Device, DeviceColor, PagedDevice, Type, Brand, Rating, TypeBrand, DeviceInfo
 }

@@ -1,22 +1,19 @@
 import React from 'react';
+import UserStore from '../../../../store/UserStore';
 import styles from './form.css';
 
-interface contactsFormInterface {
-  name?: string,
-  email?: string
-}
 
-export function Form({ name, email } : contactsFormInterface) {
+export function Form() {
   return (
     <div>
       <h2 className='title_exo2_contacts'>Есть вопросы?</h2>
       <form className={styles.contacts_form} action="">
         <div className={styles.form_item}>
-          <input placeholder='Ваше имя' className={styles.form__item_input} type="name" defaultValue={name} />
+          <input placeholder='Ваше имя' className={styles.form__item_input} type="name" defaultValue={UserStore._user.name} />
           <label className={styles.form__item_label} htmlFor="">*обязательно</label>
         </div>
         <div className={styles.form_item}>
-          <input placeholder='Электронная почта' className={styles.form__item_input} type="email" defaultValue={email} />
+          <input placeholder='Электронная почта' className={styles.form__item_input} type="email" defaultValue={UserStore._user.email} />
           <label className={styles.form__item_label} htmlFor="">*обязательно</label>
         </div>
         <div className={styles.form_item}>

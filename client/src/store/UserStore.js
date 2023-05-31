@@ -1,15 +1,15 @@
 import { makeAutoObservable } from 'mobx'
 
-const user = {
-  name: "Евгений",
-  email: 'jeka@emae.com',
-  tel: ''
+export const nullUser = {
+  name: '',
+  email: '',
+  tel: '',
+  role: ''
 }
-
 class UserStore {
   constructor() {
     this._isAuth = false
-    this._user = user
+    this._user = nullUser
     makeAutoObservable(this)
   }
 

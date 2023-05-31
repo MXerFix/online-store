@@ -8,6 +8,7 @@ import CatalogProdCard from '../../components/CatalogProdCard/CatalogProdCard';
 import { productsList } from '../../components/Catalog';
 import BasketProdCard from '../../components/BasketProdCard/BasketProdCard';
 import { observer } from 'mobx-react-lite';
+import { ScrollRestoration } from 'react-router-dom';
 
 const PAYMENT__WHEN_GET = 'when_get'
 const PAYMENT__CARD = 'card'
@@ -79,6 +80,7 @@ export const Basket = observer(() => {
           </div>
         </div>
       </div>
+      <ScrollRestoration />
     </div>
   );
 })

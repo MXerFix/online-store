@@ -6,13 +6,18 @@ import { productsList } from '../../components/Catalog/Catalog';
 import FavoritesStore from '../../store/FavoritesStore';
 import { observer } from "mobx-react-lite"
 import { Contacts } from '../../components/Contacts/Contacts';
+import { ScrollRestoration } from 'react-router-dom';
+import Preloader from '../../components/Preloader/Preloader';
 
 
 
 
 export const Favorites = observer(() => {
-  const favoritesList = productsList.filter((obj) => { return FavoritesStore.FAVORITES_LIST.includes(obj.id) })
 
+  const [isPageLoading, setIsPageLoading] = useState(false)
+
+
+  const favoritesList = productsList.filter((obj) => { return FavoritesStore.FAVORITES_LIST.includes(obj.id) })
   const favoritesListJSX = favoritesList.map(({ id, name, description, price, oldPrice, img }) => {
     return (
       <div key={id} className={styles.favorite__product_card}>
@@ -27,9 +32,11 @@ export const Favorites = observer(() => {
         <Header />
       </div>
       <div className={styles.favorites__cards_box}>
-        {favoritesListJSX}
+        { isPageLoading ? <Preloader /> : favoritesListJSX }
       </div>
       <Contacts />
+      <ScrollRestoration />
     </div>
   );
+  
 })

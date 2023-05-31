@@ -1,6 +1,6 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
-
+const Dotenv = require('dotenv-webpack')
 const NODE_ENV = process.env.NODE_ENV;
 const IS_DEV = NODE_ENV == "development";
 const GLOBAL_CSS_REGEXP = /\.global\.css$/;
@@ -59,6 +59,10 @@ module.exports = {
 
   plugins: [
     new HTMLWebpackPlugin({ template: path.resolve(__dirname, "index.html") }),
+    new Dotenv({
+      path: './.env',
+      safe: true,
+    }),
   ],
 
   devServer: {

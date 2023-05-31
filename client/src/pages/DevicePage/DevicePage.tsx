@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { ScrollRestoration, useLocation, useParams } from 'react-router-dom';
 import { ucFirst } from '../..';
 import { productsList } from '../../components/Catalog';
 import { Header } from '../../components/Header';
@@ -143,6 +143,7 @@ export const DevicePage = observer(() => {
           </div>
         </div>
       </div>
+      <ScrollRestoration />
     </div>
   );
 
