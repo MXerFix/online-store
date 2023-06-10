@@ -14,17 +14,22 @@ import { fetchTypes } from '../../http/typesAPI';
 import TypesStore from '../../store/TypesStore';
 import { observer } from 'mobx-react-lite';
 import { toJS } from 'mobx';
+import BrandsStore from '../../store/BrandsStore';
+import DeviceStore from '../../store/DeviceStore';
+import { fetchDevices } from '../../http/deviceAPI';
+import { fetchBrands } from '../../http/brandsAPI';
 
 
 
 export const Shop = observer(() => {
-  
+
+
   useEffect(() => {
     fetchTypes().then(data => TypesStore.setTypes(data))
+    fetchBrands().then(data => BrandsStore.setBrands(data))
+    fetchDevices().then(data => DeviceStore.setDevices(data))
   }, [])
 
-  
-  
 
 
   return (

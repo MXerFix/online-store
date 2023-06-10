@@ -33,17 +33,27 @@ const Device = sequelize.define('device', {
 })
 
 const PagedDevice = sequelize.define('paged_device', {
+  id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
   bigDescription: {type: DataTypes.STRING, allowNull:false},
   deviceId: {type: DataTypes.INTEGER, allowNull: false}
 })
 
 const DeviceColor = sequelize.define('device_color', {
+  id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
   color: {type: DataTypes.STRING, allowNull:false},
   deviceId: {type: DataTypes.INTEGER, allowNull: false}
 })
 
+const ImageForColor = sequelize.define('for_color_image', {
+  id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+  color: {type: DataTypes.STRING, allowNull:false},
+  deviceId: {type: DataTypes.INTEGER, allowNull: false},
+  img: {type: DataTypes.STRING, allowNull:false},
+})
+
 const DeviceInfo = sequelize.define('device_info', {
   id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+  category: {type: DataTypes.STRING, allowNull:false},
   title: {type: DataTypes.STRING, allowNull:false},
   description: {type: DataTypes.STRING, allowNull:false},
   deviceId: {type: DataTypes.INTEGER, allowNull: false}
@@ -64,6 +74,17 @@ const Rating = sequelize.define('rating', {
   rate: {type: DataTypes.INTEGER, allowNull:false}
 })
 
+const Offer = sequelize.define('offer', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  sum: {type: DataTypes.INTEGER, allowNull: false},
+  status: {type: DataTypes.STRING, allowNull: false, defaultValue: 'Создан'},
+  payment: {type: DataTypes.STRING, allowNull: false, defaultValue:'when_get'}
+})
+
+const OfferDevice = sequelize.define('offer_device', {
+  id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+})
+
 const TypeBrand = sequelize.define('type_brand', {
   id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
 })
@@ -73,6 +94,12 @@ Basket.belongsTo(User)
 
 User.hasMany(Rating)
 Rating.belongsTo(User)
+
+User.hasMany(Offer)
+Offer.belongsTo(User)
+
+Offer.hasMany(OfferDevice, {as: 'offer_devices'})
+OfferDevice.belongsTo(Offer)
 
 Basket.hasMany(BasketDevice)
 BasketDevice.belongsTo(Basket)
@@ -89,12 +116,14 @@ Rating.belongsTo(Device)
 Device.hasMany(BasketDevice)
 BasketDevice.belongsTo(Device)
 
-Device.hasOne(PagedDevice, {as: 'pagedDevice'})
+Device.hasMany(PagedDevice, {as: 'paged_device'})
 PagedDevice.belongsTo(Device)
 
 Device.hasMany(DeviceColor, {as: 'colors'})
 DeviceColor.belongsTo(Device)
 
+Device.hasMany(ImageForColor, {as: 'images_for_color'})
+ImageForColor.belongsTo(Device)
 
 Device.hasMany(DeviceInfo, {as: 'info'})
 DeviceInfo.belongsTo(Device)
@@ -104,5 +133,5 @@ Brand.belongsToMany(Type, {through: TypeBrand })
 
 
 module.exports = {
-  User, Basket, BasketDevice, Device, DeviceColor, PagedDevice, Type, Brand, Rating, TypeBrand, DeviceInfo
+  User, Basket, BasketDevice, Device, DeviceColor, PagedDevice, Type, Brand, Rating, TypeBrand, DeviceInfo, ImageForColor, Offer, OfferDevice
 }

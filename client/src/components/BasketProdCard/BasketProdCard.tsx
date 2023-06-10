@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import BasketStore from '../../store/BasketStore';
 import FavoritesStore from '../../store/FavoritesStore';
 import InvertBtn from '../../UI/InvertBtn/InvertBtn';
+import { API_URL } from '../../utils/consts';
 import styles from './basketprodcard.css';
 
 interface BasketProdCardI {
@@ -34,7 +35,7 @@ const BasketProdCard = ({ id, name, description, img, price, oldPrice }: BasketP
     <div className={styles.bProdCard_wrapper}>
       <div className={styles.bProdCard_left}>
         <div className={styles.left__image_block}>
-          <img className={styles.bProdCard_left_img} src={img} alt="" />
+          <img className={styles.bProdCard_left_img} src={ API_URL + img} alt="" />
           <span>{id}</span>
         </div>
         <div className={styles.left__name_block}>

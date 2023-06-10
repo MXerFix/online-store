@@ -1,3 +1,6 @@
+
+export const API_URL = 'http://localhost:3100/'
+
 export const ADMIN_ROUTE = "admin"
 export const SHOP_ROUTE = '/'
 export const BASKET_ROUTE = "basket"

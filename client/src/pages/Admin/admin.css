@@ -13,13 +13,18 @@
 
 .in_form__side {
   width: 46%;
+  margin: 0 12px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .modal_wrapper {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.2);
   width: 100vw;
-  height: 100vh;
+  height: max-content;
+  min-height: 100vh;
+  padding-top: 10vh;
   top: 0;
   bottom: 0;
   right: 0;
@@ -45,6 +50,7 @@
   border-radius: 8px;
   padding: 24px;
   transition: all .3s;
+  max-width: 90%;
 }
 
 .device_add__form_disabled {
@@ -81,6 +87,39 @@
 }
 
 .add_bigDescription {
+  display: flex;
+  flex-direction: column;
+}
+
+.content_box {
+  display: flex;
+  flex-direction: row;
+  scale: 1;
+  opacity: 1;
+  transition: all .3s;
+}
+
+.content_box_disabled {
+  scale: 0;
+  opacity: 0;
+}
+
+.menu_button__box {
+  display: flex;
+  flex-direction: column;
+  margin: 0 24px;
+}
+
+.mini_label {
+  font-size: 18px !important;
+}
+
+.color_box {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.more_photo_box {
   display: flex;
   flex-direction: column;
 }

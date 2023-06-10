@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import styles from './marketoffers.css';
 import image_1 from '../../public/img/major_4.png'
-import { productsList } from '../Catalog/Catalog';
 import CatalogProdCard from '../CatalogProdCard/CatalogProdCard';
 import classnames from 'classnames'
+import DeviceStore from '../../store/DeviceStore';
+import { toJS } from 'mobx';
+import { observer } from 'mobx-react-lite';
 
-export function MarketOffers() {
 
+export const MarketOffers = observer(() => {
+  
   const [category, setCategory] = useState('sales')
 
   const SALES = 'sales'
@@ -14,7 +17,7 @@ export function MarketOffers() {
   const TOP = 'top'
 
 
-  const SALES_LIST_FILTER = productsList.filter((product) => {return (product.oldPrice)})
+  const SALES_LIST_FILTER = toJS(DeviceStore.devices).filter((product) => {return (product.oldPrice)})
 
   const SALES_LIST = SALES_LIST_FILTER.map(({ id, name, description, price, oldPrice, img }) => {
     if (category === SALES) {
@@ -26,7 +29,7 @@ export function MarketOffers() {
     }
   })
 
-  const NEW_LIST_FILTER = productsList.filter((product) => {return (!product.oldPrice)})
+  const NEW_LIST_FILTER = toJS(DeviceStore.devices).filter((product) => {return (!product.oldPrice)})
 
   const NEW_LIST = NEW_LIST_FILTER.map(({ id, name, description, price, oldPrice, img }) => {
     if (category === NEW) {
@@ -38,7 +41,7 @@ export function MarketOffers() {
     }
   })
 
-  const TOP_LIST = productsList.map(({ id, name, description, price, oldPrice, img }) => {
+  const TOP_LIST = toJS(DeviceStore.devices).map(({ id, name, description, price, oldPrice, img }) => {
     if (category === TOP) {
       return (
         <div key={id} className={styles.marketOffers__list_item}>
@@ -70,4 +73,5 @@ export function MarketOffers() {
       </div>
     </div>
   );
-}
+})
+

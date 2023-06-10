@@ -6,7 +6,7 @@ import FavoritesStore from '../../store/FavoritesStore'
 import BasketStore from '../../store/BasketStore'
 import { observer } from 'mobx-react-lite'
 import { Link, useNavigate } from 'react-router-dom'
-import { DEVICE_PAGE_ROUTE } from '../../utils/consts'
+import { API_URL, DEVICE_PAGE_ROUTE } from '../../utils/consts'
 
 interface CatalogProdCardI {
   id: number,
@@ -48,7 +48,7 @@ const CatalogProdCard = observer(({ id, name, description, price, oldPrice, img 
       <div onClick={() => { navigate( '../' + DEVICE_PAGE_ROUTE + '/' + id, {replace: false }) }} className={styles._card}>
         <div className={styles.card__mainInfo}>
           <div className={styles.card__mainInfo_img}>
-            <img src={img} alt="" />
+            <img src={API_URL + img} alt="" />
             <button onClick={(e) => { e.stopPropagation(); setFavorite(!favorite); return (favorite ? FavoritesStore.removeFavoriteId(id) : FavoritesStore.addFavoriteId(id)) }} className={favorite ? classnames(styles.favorite__btn, styles.favorite__btn_active) : styles.favorite__btn}>
               <svg width="40" height="37" viewBox="0 0 40 37" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path className={styles.heart_svg_1} d="M21.178 35.823C20.532 36.059 19.468 36.059 18.822 35.823C13.312 33.8764 1 25.7556 1 11.9916C1 5.91572 5.731 1 11.564 1C15.022 1 18.081 2.73034 20 5.40449C21.919 2.73034 24.997 1 28.436 1C34.269 1 39 5.91572 39 11.9916C39 25.7556 26.688 33.8764 21.178 35.823Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

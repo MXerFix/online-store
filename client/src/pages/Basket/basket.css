@@ -226,3 +226,11 @@
   width: 100%;
   margin-bottom: 32px;
 }
+
+.basket__takeOffer_btn {
+  margin-top: 64px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
